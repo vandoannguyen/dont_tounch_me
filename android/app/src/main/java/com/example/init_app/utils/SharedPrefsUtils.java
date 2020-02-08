@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class SharedPrefsUtils {
+    private static final String SHARED_PREFERENCES_NAME = "FlutterSharedPreferences";
     Context activity;
     private SharedPreferences pref;
     private static SharedPrefsUtils utility;
@@ -23,7 +24,7 @@ public class SharedPrefsUtils {
     private SharedPrefsUtils(Context activity, int mode) {
         this.autoCommit = true;
         this.activity = activity;
-        pref = activity.getSharedPreferences(activity.getPackageName() + "_preferences", mode);
+        pref = activity.getSharedPreferences(SHARED_PREFERENCES_NAME, mode);
         editor = pref.edit();
 
     }
@@ -31,7 +32,7 @@ public class SharedPrefsUtils {
     private SharedPrefsUtils(Context activity) {
         this.autoCommit = true;
         this.activity = activity;
-        pref = activity.getSharedPreferences(activity.getPackageName() + "_preferences", Context.MODE_PRIVATE);
+        pref = activity.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         editor = pref.edit();
     }
 

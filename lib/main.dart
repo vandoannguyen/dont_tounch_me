@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:init_app/common/Common.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'config.dart';
+import 'home/HomeScreen.dart';
+import 'utils/CallNativeUtils.dart';
 
-void main() {
+SharedPreferences pref;
+void main() async {
+  pref = await SharedPreferences.getInstance();
   Common.config = config;
+  CallNativeUtils.setChannel("com.example.init_app");
   return runApp(MyApp());
 }
 
@@ -16,7 +22,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
