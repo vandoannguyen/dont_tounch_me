@@ -39,6 +39,7 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF222386),
         title: Text("Setting"),
         centerTitle: true,
       ),
@@ -58,8 +59,8 @@ class _SettingState extends State<Setting> {
                 onChanged: (value) {
                   setPass(context, value);
                 },
-                activeTrackColor: Colors.lightGreenAccent,
-                activeColor: Colors.green,
+                activeTrackColor: Colors.lightBlueAccent.withOpacity(0.5),
+                activeColor: Colors.blue,
               ),
             ),
             Container(
@@ -81,8 +82,8 @@ class _SettingState extends State<Setting> {
                     });
                   }
                 },
-                activeTrackColor: Colors.lightGreenAccent,
-                activeColor: Colors.green,
+                activeTrackColor: Colors.lightBlueAccent.withOpacity(0.5),
+                activeColor: Colors.blue,
               ),
             ),
             Container(
@@ -104,8 +105,8 @@ class _SettingState extends State<Setting> {
                       });
                     }
                   },
-                  activeTrackColor: Colors.lightGreenAccent,
-                  activeColor: Colors.green,
+                  activeTrackColor: Colors.lightBlueAccent.withOpacity(0.5),
+                  activeColor: Colors.blue,
                 )),
             ExpansionTile(
               leading: Icon(Icons.ring_volume),

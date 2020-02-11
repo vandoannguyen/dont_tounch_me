@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
 
@@ -11,6 +12,8 @@
         android:name=".MainApplicaiton"
         android:icon="@mipmap/ic_launcher"
         android:label="init_app">
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
         <receiver
             android:name=".BatteryRecerver"
             android:enabled="true"

@@ -31,7 +31,8 @@ class HomePage extends StatelessWidget implements BaseView {
         elevation: 4,
         semanticLabel: "Demo",
         child: Container(
-          color: Colors.blue,
+//          color: Color.fromRGBO(108, 115, 255, 1),
+          color: Color(0xFF222386),
           child: SafeArea(child: drawerButton(context)),
         ),
       ),
@@ -99,7 +100,15 @@ class _ButtomButtonState extends State<ButtomButton> {
     // TODO: implement initState
     super.initState();
     widget._viewModel.isSetPass = pref.getBool(Common.SEF_CHECK_IS_PASSWORD);
+    if (widget._viewModel.isSetPass == null) {
+      pref.setBool(Common.SEF_CHECK_IS_PASSWORD, false);
+      widget._viewModel.isSetPass = false;
+    }
     widget._viewModel.isSetCharge = pref.getBool(Common.SEF_CHECK_IS_PIN);
+    if (widget._viewModel.isSetCharge == null) {
+      pref.setBool(Common.SEF_CHECK_IS_PIN, false);
+      widget._viewModel.isSetCharge = false;
+    }
     if (widget._viewModel.isSetCharge) {
       CallNativeUtils.invokeMethod(
           method: "chargeSate", aguments: {"isSet": true});
@@ -109,183 +118,181 @@ class _ButtomButtonState extends State<ButtomButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                setPassword(context);
-              },
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey[300],
-                              blurRadius: 4,
-                              spreadRadius: 4,
-                            )
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Icon(
-                        Icons.lock,
-                        color: widget._viewModel.isSetPass != null &&
-                                widget._viewModel.isSetPass
-                            ? Colors.red[400]
-                            : Colors.blue[300],
-                        size: 35,
-                      ),
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          GestureDetector(
+            onTap: () {
+              setPassword(context);
+            },
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+//                        boxShadow: [
+//                          BoxShadow(
+//                            color: Colors.grey[300],
+//                            blurRadius: 4,
+//                            spreadRadius: 4,
+//                          )
+//                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Icon(
+                      Icons.lock,
+                      color: widget._viewModel.isSetPass != null &&
+                              widget._viewModel.isSetPass
+                          ? Colors.red[400]
+                          : Colors.blue[300],
+                      size: 35,
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Password",
-                      textAlign: TextAlign.center,
-                      style: titleStyle(),
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Password",
+                    textAlign: TextAlign.center,
+                    style: titleStyle(),
+                  )
+                ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                setFlash(context);
-              },
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey[300],
-                              blurRadius: 4,
-                              spreadRadius: 4,
-                            )
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Icon(
-                        Icons.highlight,
-                        color: widget._viewModel.isFlash != null &&
-                                widget._viewModel.isFlash
-                            ? Colors.red[400]
-                            : Colors.blue[300],
-                        size: 35,
-                      ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setFlash(context);
+            },
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+//                        boxShadow: [
+//                          BoxShadow(
+//                            color: Colors.grey[300],
+//                            blurRadius: 4,
+//                            spreadRadius: 4,
+//                          )
+//                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Icon(
+                      Icons.highlight,
+                      color: widget._viewModel.isFlash != null &&
+                              widget._viewModel.isFlash
+                          ? Colors.red[400]
+                          : Colors.blue[300],
+                      size: 35,
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Flash",
-                      textAlign: TextAlign.center,
-                      style: titleStyle(),
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Flash",
+                    textAlign: TextAlign.center,
+                    style: titleStyle(),
+                  )
+                ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                setCharge(context);
-              },
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey[300],
-                              blurRadius: 4,
-                              spreadRadius: 4,
-                            )
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Icon(
-                        Icons.battery_charging_full,
-                        color: widget._viewModel.isSetCharge != null &&
-                                widget._viewModel.isSetCharge
-                            ? Colors.red[400]
-                            : Colors.blue[300],
-                        size: 35,
-                      ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setCharge(context);
+            },
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+//                        boxShadow: [
+//                          BoxShadow(
+//                            color: Colors.grey[300],
+//                            blurRadius: 4,
+//                            spreadRadius: 4,
+//                          )
+//                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Icon(
+                      Icons.battery_charging_full,
+                      color: widget._viewModel.isSetCharge != null &&
+                              widget._viewModel.isSetCharge
+                          ? Colors.red[400]
+                          : Colors.blue[300],
+                      size: 35,
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Set Battery",
-                      textAlign: TextAlign.center,
-                      style: titleStyle(),
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Set Battery",
+                    textAlign: TextAlign.center,
+                    style: titleStyle(),
+                  )
+                ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                setting(context);
-              },
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey[300],
-                              blurRadius: 4,
-                              spreadRadius: 4,
-                            )
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Icon(
-                        Icons.settings,
-                        color: Colors.blue[300],
-                        size: 35,
-                      ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setting(context);
+            },
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+//                        boxShadow: [
+//                          BoxShadow(
+//                            color: Colors.grey[300],
+//                            blurRadius: 4,
+//                            spreadRadius: 4,
+//                          )
+//                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Icon(
+                      Icons.settings,
+                      color: Colors.blue[300],
+                      size: 35,
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Setting",
-                      textAlign: TextAlign.center,
-                      style: titleStyle(),
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Setting",
+                    textAlign: TextAlign.center,
+                    style: titleStyle(),
+                  )
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
+//    );
   }
 
   titleStyle() {
-    return TextStyle(fontSize: 16);
+    return TextStyle(fontSize: 16, color: Colors.white);
   }
 
   void setPassword(context) async {

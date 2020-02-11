@@ -45,7 +45,7 @@ class _DrawerButtonState extends State<DrawerButton> {
           },
           leftIcon: Icon(
             Icons.lock_outline,
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.8),
           ),
           title: "Set password",
           rightIcon: Switch(
@@ -61,8 +61,8 @@ class _DrawerButtonState extends State<DrawerButton> {
 //                });
 //              }
             },
-            activeTrackColor: Colors.lightGreenAccent,
-            activeColor: Colors.green,
+            activeTrackColor: Colors.white,
+            activeColor: Colors.lightBlueAccent,
           ),
         ),
         Container(
@@ -73,7 +73,7 @@ class _DrawerButtonState extends State<DrawerButton> {
             onTap: () {},
             leftIcon: Icon(
               Icons.battery_charging_full,
-              color: Colors.white,
+              color: Colors.white.withOpacity(0.8),
             ),
             title: "Notify charge",
             rightIcon: Switch(
@@ -86,8 +86,8 @@ class _DrawerButtonState extends State<DrawerButton> {
                   widget._viewModel.isSetCharge = value;
                 });
               },
-              activeTrackColor: Colors.lightGreenAccent,
-              activeColor: Colors.green,
+              activeTrackColor: Colors.white,
+              activeColor: Colors.lightBlueAccent,
             )),
         Container(
           height: 0.5,
@@ -95,7 +95,10 @@ class _DrawerButtonState extends State<DrawerButton> {
         ),
         customItemButton(
           title: "Setting",
-          leftIcon: Icon(Icons.settings, color: Colors.white),
+          leftIcon: Icon(
+            Icons.settings,
+            color: Colors.white.withOpacity(0.8),
+          ),
           onTap: () {
             IntentAnimation.intentBack(context: widget.context);
             settingScreen(widget.context);
@@ -107,8 +110,8 @@ class _DrawerButtonState extends State<DrawerButton> {
         ),
         customItemButton(
             leftIcon: Icon(
-              Icons.stars,
-              color: Colors.yellow,
+              Icons.star,
+              color: Colors.white.withOpacity(0.8),
             ),
             title: "Rate",
             onTap: () {
@@ -121,7 +124,7 @@ class _DrawerButtonState extends State<DrawerButton> {
         customItemButton(
             leftIcon: Icon(
               Icons.share,
-              color: Colors.yellow,
+              color: Colors.white.withOpacity(0.8),
             ),
             title: "Share app",
             onTap: () {
